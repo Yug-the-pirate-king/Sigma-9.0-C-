@@ -1,5 +1,5 @@
 #include <iostream>
-#define pencil 30
+#define pencil 30 // this is call a macros they do not take storage in code .
 #define pen 50
 #define eraser 10
 using namespace std;
