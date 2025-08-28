@@ -26,6 +26,29 @@ cout << "++ : " << a++ << endl; // 5 but a = 6
 
 cout << "-- : " << b-- << endl; // 10 but b = 9
 
+cout << "++ : " << --a << endl; // 5 but a = 6
+
+cout << "-- : " << ++b << endl; // 10 but b = 9
+
+cout << " a += b : " << a + b << endl; // 15
+
+cout << "a -= b : " << a - b  << endl; // 5
+
+cout << " a *= b : " << a * b << endl; // 50
+
+cout << "a /= b : " << a / (float)b << endl; // 0.5
+
+cout << endl ;
+
+cout << "Relational Operators 0 false 1 True"<< endl;
+
+cout << " a > b : " << (a > b) << endl; // 0
+
+cout << "a < b : " << (a < b) << endl; // 1
+
+cout << " a == b : " << (a == b) << endl; // 0
+
+cout << "a /= b : " << (a != b) << endl; // 1
 
 return 0 ;
 }
