@@ -2,21 +2,29 @@
 using namespace std;
 
 int main() {
-    int n;
-    int isprime ;
-    cout << "Enter the Number : ";
+    int n ; // input 
+
+    bool isprime ; // is Prime
+
+    cout << "Enter the Number : "; //input
     cin >> n;
 
-    for(int i = 2 ; i < n ; i++){
-        isprime = true;
-        for (int j=2 ; j*j <= i; j++){
+    for(int i = 2 ; i < n ; i++){ // for number 
+
+        isprime = true; 
+
+        for (int j=2 ; j*j <= i; j++){ // checking prime 
+
             if(i%j == 0){
+
                 isprime = false ;
                 break;
             }
         }
-        if(isprime){
+        if(isprime){ // isprime dont change to 
+
                 cout << i << endl;
+                
             }
     }
 
