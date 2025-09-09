@@ -1,0 +1,33 @@
+Arrays :-
+
+Linear collection of same type of elements that are stored together in contiguous memory spaces.
+
+index will always start form 0.
+
+#include <iostream>
+using namespace std;
+
+int main() {
+
+    int marks1 = 99;❌
+    int marks2 = 78;❌
+    int marks3 = 62;❌
+
+    int marks[] = {99, 78, 62}✔️  [a] is the size of arrays
+
+    marks[0] =  99;
+    marks[1] =  78;
+    marks[2] =  62;
+
+    sizeof(marks) = 12 
+
+    sizeof(marks)/sizeof(int) = 3;
+
+
+    return 0;
+}
+
+
+Memory is statically allocted (at compile time)
+
+Name of arrays is pointer 
