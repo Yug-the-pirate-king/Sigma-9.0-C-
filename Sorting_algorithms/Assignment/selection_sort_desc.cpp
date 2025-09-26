@@ -6,7 +6,7 @@ void selection_sort( int *nums, int size)
     for(int i = 0;i<size;i++){
         int minIndex = i;
         for(int j=i+1;j<size;j++){
-            if(nums[minIndex] > nums[j]){
+            if(nums[minIndex] <= nums[j]){
                 minIndex = j;
 }
      }
@@ -17,7 +17,7 @@ void selection_sort( int *nums, int size)
 }
 }
 int main() {
-    int nums[] = {5,4,1,2,3};
+    int nums[] = {3,6,2,1,8,7,4,5,3,1};
     int size = sizeof(nums)/sizeof(int);
 
     selection_sort(nums,size);
