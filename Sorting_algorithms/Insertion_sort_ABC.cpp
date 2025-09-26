@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
 
-void insertion_sort(int *nums, int size) {
+void insertion_sort(char *nums, int size) {
     for (int i = 1; i < size; i++) {   // start from index 1
         int curr = nums[i];
         int prev = i - 1;
@@ -23,8 +23,8 @@ void insertion_sort(int *nums, int size) {
 }
 
 int main() {
-    int nums[] = {5, 4, 1, 2, 3};
-    int size = sizeof(nums) / sizeof(int);
+    char nums[] = {'a','c','b','e','t','d','w','z'};
+    int size = sizeof(nums) / sizeof(char);
 
     insertion_sort(nums, size);
     return 0;
