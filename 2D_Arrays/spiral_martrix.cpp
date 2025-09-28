@@ -12,7 +12,7 @@ int main() {
     { 21, 22, 23, 24, 25 }
 };
 
-    for(int i = 0;i<3;i++){
+    for(int i = 0;i<(min(n,m)+1)/2;i++){
     int TopRow = i;
     int LeftColum = i;
     int BottumRow = n-i-1;
