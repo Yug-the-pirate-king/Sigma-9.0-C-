@@ -39,13 +39,13 @@ int col = 3;
 
 while (key != nums[row][col])
 {
-    if(nums[row][col] < key){
+    if(nums[row][col] > key){
         col--;
     }else{
-        row--;
+        row++;
     }
 }
-cout << "The Key is at X: " << row <<",Y: "<< col;
+cout << "The Key is at X: " << row + 1<<",Y: "<< col+1;
 }
 
 int main() {
