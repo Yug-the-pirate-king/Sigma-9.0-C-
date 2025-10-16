@@ -48,12 +48,36 @@ while (key != nums[row][col])
 cout << "The Key is at X: " << row + 1<<",Y: "<< col+1;
 }
 
+#include <iostream>
+using namespace std;
+
+void Staircase2(double nums[4][4], int key) {
+    int row = 3;  // start at bottom-left
+    int col = 0;
+
+    while (row >= 0 && col < 4) {
+        if (nums[row][col] == key) {
+            cout << "The Key is at X: " << row << ", Y: " << col << endl;
+            return;
+        } 
+        else if (nums[row][col] > key) {
+            row--;  // move up
+        } 
+        else {
+            col++;  // move right
+        }
+    }
+
+    cout << "Key not found!" << endl;
+}
+
 int main() {
     double nums[4][4] = {{10,20,30.40},{15,25,35,45},{27,29,37,48},{32,33,39,50}};
     int key = 32;
-    //Burte_force(nums,key); //n*n
-    //Row_lS_colum_BS(nums,key); //n*logn
-    Staircase(nums,key);
+    Burte_force(nums,key); //n*n
+   Row_lS_colum_BS(nums,key); //n*logn
+    Staircase(nums,key); //n+m
+    Staircase2(nums,key);
 
     return 0;
 }
