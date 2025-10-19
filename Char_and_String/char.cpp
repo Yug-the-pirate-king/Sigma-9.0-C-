@@ -1,4 +1,4 @@
-#include<myheaders.h>
+#include "../myheaders.h"
 
 int main(){
     char ch1 = 'a';
@@ -24,19 +24,19 @@ int main(){
     // cout << arr[4] << endl;
     // cout << arr;
 
-    char word[50];
-    cout
-    cin >> word; //after space nothing is included
+    // char word[50];
+    // cout<<"Enter a word : \n";
+    // cin >> word; //after space nothing is included
 
-    cout << "You word is :" << word << "\n";
-    cout << "The length is :"<< strlen(word);
+    // cout << "You word is :" << word << "\n";
+    // cout << "The length is :"<< strlen(word) <<"\n";
 
     char sentence[50];
-    cin.getline(sentence,50);
+    cout<<"Enter a sentence : \n";
+    cin.getline(sentence,50,'5');
 
     cout << "You word is :" << sentence << "\n";
     cout << "The length is :"<< strlen(sentence);
-
 
     return 0;
 }
