@@ -2,10 +2,11 @@
 
 int main(){
 // Bitwise Operater
-cout << (3&5) << "\n"; // 1
-cout << (3|5) << "\n"; // 7
-cout << (3^5); // 6
+cout << (3&5) << "\n"; // 1  & AND
+cout << (3|5) << "\n"; // 7 | OR
+cout << (3^5) << "\n"; // 6 ^ XOR
 
-
+//One Complement 
+cout << (~6) << "\n" ; //-7  ~NOT
 return 0;
 }
