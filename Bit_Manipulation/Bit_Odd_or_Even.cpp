@@ -3,7 +3,9 @@
 void Odd_or_Even(int Num){
     bool is_odd = false;
 
-    if(Num & 1){
+    //Bit Marks -> are used to access specific bits in a byte of data.
+
+    if(Num & 1){ // & id Bit masks
         is_odd = true;
     }
 
