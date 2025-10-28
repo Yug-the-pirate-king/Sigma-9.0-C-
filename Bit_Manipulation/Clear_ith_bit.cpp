@@ -1,8 +1,9 @@
 #include "../myheaders.h"
 
-void setithbit(int n,int i){
-    cout << (n|1<<i);
+void Clearithbit(int n, int i) {
+    cout << "Number after clearing bit " << i << " : " << (n & ~(1 << i)) << endl;
 }
+
 
 int main(){
     int n ,i;
@@ -10,7 +11,6 @@ int main(){
     cin >> n;
     cout << "Enter the postion :\n";
     cin >> i;
-    cout << "\n";
 
-    setithbit(n,i);
+    Clearithbit(n,i);
 }
