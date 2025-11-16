@@ -7,9 +7,13 @@ class Car{
     string color;
 
     public:
-    Car(string nameval,string colorval){
-        name = nameval;
-        color = colorval;
+    Car(){
+        cout <<"Constructor without parameter";
+    }
+    Car(string name,string color){
+        cout <<"Constructor with parameter";
+       this->name = name;
+        this->color = color;
     }
     void start(){
         cout << "Car has started.";
