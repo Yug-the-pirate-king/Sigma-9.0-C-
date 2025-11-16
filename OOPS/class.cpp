@@ -6,11 +6,28 @@ class Student{ // class
     string name;
     float cgpa;
 
+    public :
+    
     //Methods
     void get_percentage(){
         cout << cgpa *10 << "%\n";
     }
 
+    //Setter
+    void SetName(string nameVal){
+        name = nameVal;
+    }
+    void SetName(float cgpaval){
+        cgpa = cgpaval;
+    }
+
+    //Getter
+    string getName(){
+        return name;
+    }
+    float getcgpa(){
+        return cgpa;
+    }
 };
 
 int main(){
