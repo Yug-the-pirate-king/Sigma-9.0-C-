@@ -2,6 +2,8 @@
 #include <string>
 using namespace std;
 
+// example of simple inheritance 
+
 class Animal{
     public:
     string color;
