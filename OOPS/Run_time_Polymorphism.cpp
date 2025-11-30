@@ -14,7 +14,7 @@ class Parent{
 class Child : public Parent{
     public : 
     void show(){
-        cout << "This is Child Class.";
+        cout << "This is Child Class.\n";
     }
     void hello(){
         cout << "Hello from Child";
@@ -26,5 +26,6 @@ int main() {
     c1.show(); // function overriding
     Parent *ptr;
     ptr = &c1;
+    ptr->hello();
     return 0;
 }
