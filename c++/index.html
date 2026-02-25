@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Yug Shah - Portfolio (Fixed)</title>
+  <script type="module" src="https://unpkg.com/@splinetool/viewer@1.10.56/build/spline-viewer.js"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Interactive Spline Background -->
+  <spline-viewer
+      id="spline-bg"
+      loading-anim-type="spinner-small-dark"
+      url="https://prod.spline.design/UMdzl9MABpatixgj/scene.splinecode">
+  </spline-viewer>
+
+  <!-- Overlay -->
+  <div id="overlay"></div>
+
+  <!-- Logo -->
+  <div id="logo-cover">Yug Shah</div>
+
+  <!-- Scrollable Sections -->
+  <div class="sections">
+
+    <!-- Hero Section -->
+    <section id="hero">
+      <div class="content">
+        <div id="heading">
+          <h1>Hello, I'm Yug Shah</h1>
+        </div>
+        <div id="hero-info">
+          <p>"Hi, I'm Yug Shah, a passionate Web Developer and Designer. I create interactive, visually engaging websites that combine clean code with stunning 3D experiences. Scroll down to explore my projects and see how I turn ideas into reality."</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+      <div class="content">
+        <h2>About Me</h2>
+        <p>I'm a creative web developer with a passion for cutting-edge technologies and immersive user experiences. I specialize in React, Three.js, and modern web frameworks.</p>
+        <br>
+        <p><strong>Skills:</strong> JavaScript, React, Node.js, Three.js, Spline, CSS3, HTML5, MongoDB, Express</p>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+      <div class="content">
+        <h2>Featured Projects</h2>
+        <div class="projects-grid">
+          <div class="project-card">
+            <h3>Interactive 3D Portfolio</h3>
+            <p>A stunning portfolio website featuring Spline 3D backgrounds and smooth animations.</p>
+          </div>
+          <div class="project-card">
+            <h3>E-Commerce Platform</h3>
+            <p>Full-stack e-commerce solution with real-time inventory management and secure payments.</p>
+          </div>
+          <div class="project-card">
+            <h3>3D Web Experience</h3>
+            <p>Immersive web experience combining WebGL, Three.js, and interactive storytelling.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience">
+      <div class="content">
+        <h2>Experience & Skills</h2>
+        <p>With a strong foundation in web development and design, I bring creativity and technical expertise to every project.</p>
+        <br>
+        <p><strong>Frontend:</strong> React, Vue.js, Three.js, WebGL, Spline, GSAP</p>
+        <p><strong>Backend:</strong> Node.js, Express, MongoDB, PostgreSQL</p>
+        <p><strong>Tools:</strong> Git, Docker, Figma, Adobe Creative Suite</p>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+      <div class="content">
+        <h2>Let's Work Together</h2>
+        <p>Ready to bring your ideas to life? Let's create something amazing together!</p>
+        <form id="contact-form">
+          <input type="text" name="name" placeholder="Your Name" required>
+          <input type="email" name="email" placeholder="Your Email" required>
+          <textarea name="message" placeholder="Tell me about your project..." required></textarea>
+          <button type="submit">Send Message</button>
+        </form>
+        <p>Or reach me directly at: <a href="mailto:yug.shah@example.com">yug.shah@example.com</a></p>
+      </div>
+    </section>
+
+  </div>
+</body>
+</html>
