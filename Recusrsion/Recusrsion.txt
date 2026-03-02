@@ -1,0 +1,21 @@
+Recursion : when a function repeatedly calls itself
+
+main -> function -> function -> function ->function 
+
+The end point of the Recursion function is called its base case
+
+Recursion 
+understanding using math
+f(x) = x^2;
+f(f(x)) = ((x)^2)^2;
+
+if 
+f(x) = x!
+f(x) = x * (x-1)! this is Recursion function
+
+let 
+f(5) = 5!
+f(5) = 5 * 4!
+f(5) = 5 * 4 * 3!
+f(5) = 5 * 4 * 3 * 2!
+f(5) = 5 * 4 * 3 * 2 * 1! ..... 1! = 1
