@@ -1,8 +1,9 @@
 #include "../myheaders.h"
 using namespace std;
-string remove_dul(string S,string ans,int i,int map[26]){
+void remove_dul(string S,string ans,int i,int map[26]){
 if(i == S.size()){
 cout << "ans :" << ans ;
+return ;
 }
     char ch = S[i];
     int mapidx = (int)(ch-'a');
@@ -17,11 +18,11 @@ cout << "ans :" << ans ;
 int main()
 {
 
-    string S = "ShahYug";
+    string S = "shahyug";
     string ans ="";
     int map[26] = {false};
 
-    cout << remove_dul(S,ans,0,map);
+    remove_dul(S,ans,0,map);
 
     return 0;
 }
