@@ -18,7 +18,7 @@ void printSolution(int sol[8][8], int N)
     }
 }
 
-bool solveKTUtil(int x, int y, int movei, int sol[][8], int xMove[], int yMove[], int N)
+bool solveKTUtil(int x, int y, int movei, int sol[8][8], int xMove[], int yMove[], int N)
 {
     int k, next_x, next_y;
 
@@ -48,8 +48,8 @@ bool solveKTUtil(int x, int y, int movei, int sol[][8], int xMove[], int yMove[]
 
 int main()
 {
-    int N = 9;
-    int sol[9][9];
+    int N = 8;
+    int sol[8][8];
     for (int x = 0; x < N; x++)
     {
         for (int y = 0; y < N; y++)
