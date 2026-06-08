@@ -60,7 +60,31 @@ public:
         cout << "Cycle does not exists";
         return false;
     }
+
+    void removing_cycle(Node *head){
+         Node *slow = head;
+        Node *fast = head;
+
+        while (fast != nullptr && fast->next != nullptr)
+        {
+            slow = slow->next;
+            fast = fast->next->next;
+
+            if (slow == fast)
+            {
+                slow = head;
+                break;
+            }
+        }
+         while (slow != fast)
+         {
+            
+        }
+    }
+    
 };
+
+
 
 int main()
 {
@@ -76,6 +100,4 @@ int main()
     ll.isCycle(ll.head);
 
     return 0;
-
-    //just updating readme.
 }
