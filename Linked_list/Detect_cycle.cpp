@@ -41,6 +41,17 @@ public:
         }
     }
 
+    void print_ll()
+    {
+        Node *temp = head;
+        while (temp != NULL)
+        {
+            cout << temp->data << " -> ";
+            temp = temp->next;
+        }
+        cout << "NULL\n";
+    }
+
     bool isCycle(Node *head)
     {
         Node *slow = head;
@@ -61,8 +72,12 @@ public:
         return false;
     }
 
-    void removing_cycle(Node *head){
-         Node *slow = head;
+    void removing_cycle(Node *head)
+    {
+        if (head == NULL)
+            return;
+
+        Node *slow = head;
         Node *fast = head;
 
         while (fast != nullptr && fast->next != nullptr)
@@ -73,31 +88,50 @@ public:
             if (slow == fast)
             {
                 slow = head;
-                break;
+
+                while (slow != fast)
+                {
+                    slow = slow->next;
+                    fast = fast->next;
+                }
+
+                Node *temp = slow;
+                while (temp->next != slow)
+                {
+                    temp = temp->next;
+                }
+                temp->next = NULL;
+                return;
             }
         }
-         while (slow != fast)
-         {
-            
-        }
     }
-    
 };
-
-
+;
 
 int main()
 {
     List ll;
 
+    ll.push_front(6);
+    ll.push_front(5);
     ll.push_front(4);
     ll.push_front(3);
     ll.push_front(2);
     ll.push_front(1);
 
+    cout << "List before creating cycle: ";
+    ll.print_ll();
+
     ll.tail->next = ll.head;
 
-    ll.isCycle(ll.head);
+    if (ll.isCycle(ll.head))
+    {
+        ll.removing_cycle(ll.head);
+        cout << "List after removing cycle: ";
+        ll.print_ll();
+    }
 
     return 0;
+
+    // update readme just to show Contribution.
 }
