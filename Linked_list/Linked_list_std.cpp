@@ -6,6 +6,15 @@
 
 using namespace std;
 
+void print_ll(list<int> ll){
+    list<int>::iterator itr;
+
+    for(itr = ll.begin();itr != ll.end();itr++){
+        cout << (*itr) <<" -> ";
+    }
+    cout << "NULL\n";
+}
+
 int main() {
     list<int> ll;
     ll.push_front(2);
@@ -14,11 +23,20 @@ int main() {
     ll.push_back(3);
     ll.push_back(4); //1->2->3->4
 
-    list<int>::iterator itr;
+    print_ll(ll);
 
-    for(itr = ll.begin();itr != ll.end();itr++){
-        cout << (*itr) <<"->";
-    }
-    cout << "NULL";
+    cout << ll.size()<<"\n";
+
+    cout << "Head " <<  ll.front() <<"\n";
+    cout << "Tail "<< ll.back() << "\n";
+
+    ll.pop_front();
+    print_ll(ll);
+
+    ll.pop_back();
+    print_ll(ll);
+
+    ll.insert(ll.begin(),3,99);
+    print_ll(ll);
     return 0;
 }
