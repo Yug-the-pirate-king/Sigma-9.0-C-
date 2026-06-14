@@ -32,7 +32,7 @@ public:
 template <class T>
 class Node
 {
-public: // FIX 1: Make variables public so Stackclass can access them
+public: 
     T val;
     Node<T> *next;
 
@@ -57,7 +57,6 @@ public:
     void push(T val)
     {
         Node<T> *newNode = new Node<T>(val);
-        // FIX 2: Insert at the HEAD instead of the TAIL (O(1) time complexity)
         newNode->next = head;
         head = newNode;
     }
