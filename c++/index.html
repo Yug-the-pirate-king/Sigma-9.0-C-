@@ -1,28 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Basic document metadata -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Portfolio of Yug Shah - Web Developer and Designer specializing in interactive 3D web experiences.">
   <title>Yug Shah - Portfolio (Fixed)</title>
+
+  <!-- Spline viewer custom element for the interactive 3D background -->
   <script type="module" src="https://unpkg.com/@splinetool/viewer@1.10.56/build/spline-viewer.js"></script>
+
+  <!-- Project stylesheet -->
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- Interactive Spline Background -->
+  <!--
+    Interactive Spline 3D background.
+    Keep this as the first visual element in the body so it renders behind
+    everything else. Ensure the corresponding CSS lets pointer events pass
+    through to the content (e.g., pointer-events: none on #spline-bg).
+  -->
   <spline-viewer
-      id="spline-bg"
-      loading-anim-type="spinner-small-dark"
-      url="https://prod.spline.design/UMdzl9MABpatixgj/scene.splinecode">
+    id="spline-bg"
+    role="img"
+    aria-label="Interactive 3D background scene"
+    loading-anim-type="spinner-small-dark"
+    url="https://prod.spline.design/UMdzl9MABpatixgj/scene.splinecode">
   </spline-viewer>
 
-  <!-- Overlay -->
+  <!-- Semi-transparent overlay between the 3D scene and the scrollable content -->
   <div id="overlay"></div>
 
-  <!-- Logo -->
+  <!-- Fixed logo / name badge -->
   <div id="logo-cover">Yug Shah</div>
 
-  <!-- Scrollable Sections -->
-  <div class="sections">
+  <!-- Main scrollable content area -->
+  <main class="sections">
 
     <!-- Hero Section -->
     <section id="hero">
@@ -35,6 +48,7 @@
         </div>
       </div>
     </section>
+    <!-- /#hero -->
 
     <!-- About Section -->
     <section id="about">
@@ -45,6 +59,7 @@
         <p><strong>Skills:</strong> JavaScript, React, Node.js, Three.js, Spline, CSS3, HTML5, MongoDB, Express</p>
       </div>
     </section>
+    <!-- /#about -->
 
     <!-- Projects Section -->
     <section id="projects">
@@ -66,6 +81,7 @@
         </div>
       </div>
     </section>
+    <!-- /#projects -->
 
     <!-- Experience Section -->
     <section id="experience">
@@ -78,22 +94,66 @@
         <p><strong>Tools:</strong> Git, Docker, Figma, Adobe Creative Suite</p>
       </div>
     </section>
+    <!-- /#experience -->
 
     <!-- Contact Section -->
     <section id="contact">
       <div class="content">
         <h2>Let's Work Together</h2>
         <p>Ready to bring your ideas to life? Let's create something amazing together!</p>
-        <form id="contact-form">
-          <input type="text" name="name" placeholder="Your Name" required>
-          <input type="email" name="email" placeholder="Your Email" required>
-          <textarea name="message" placeholder="Tell me about your project..." required></textarea>
+
+        <!--
+          Contact form.
+          Added accessible labels via aria-label and a small client-side guard
+          to prevent the default page reload when no backend endpoint is set.
+        -->
+        <form id="contact-form" method="post" action="#" novalidate>
+          <input
+            type="text"
+            name="name"
+            placeholder="Your Name"
+            aria-label="Your Name"
+            aria-required="true"
+            required>
+          <input
+            type="email"
+            name="email"
+            placeholder="Your Email"
+            aria-label="Your Email"
+            aria-required="true"
+            required>
+          <textarea
+            name="message"
+            placeholder="Tell me about your project..."
+            aria-label="Tell me about your project"
+            aria-required="true"
+            required></textarea>
           <button type="submit">Send Message</button>
         </form>
+
         <p>Or reach me directly at: <a href="mailto:yug.shah@example.com">yug.shah@example.com</a></p>
       </div>
     </section>
+    <!-- /#contact -->
 
-  </div>
+  </main>
+  <!-- /.sections -->
+
+  <!--
+    Guard the contact form submission until a real backend endpoint is wired up.
+    This prevents an unintended page reload / broken request.
+  -->
+  <script>
+    (function () {
+      var form = document.getElementById('contact-form');
+      if (!form) return;
+
+      form.addEventListener('submit', function (event) {
+        event.preventDefault();
+        // Placeholder: swap this for an actual fetch() call to your backend.
+        window.alert('Thanks for reaching out! This is a demo form — wire up a backend to send real messages.');
+      });
+    })();
+  </script>
 </body>
 </html>
