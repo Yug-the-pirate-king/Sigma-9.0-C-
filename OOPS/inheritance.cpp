@@ -1,43 +1,39 @@
 #include <iostream>
 #include <string>
-using namespace std;
 
-class Car{
+class Car {
+public:
+    std::string brand;
+    std::string color;
+    int mileage;
 
-    public:
-    string name;
-    string color;
-    int *mileage;
-    Car(){
-        cout <<"Constructor without parameter\n";
+    Car() : brand(), color(), mileage(0) {
+        std::cout << "Constructor without parameter\n";
     }
-    Car(string name,string color){
-        cout <<"Constructor with parameter\n";
-        this->name = name;
-        this->color = color;
-        mileage = new int;
-        *mileage = 12;
+
+    Car(const std::string& brandName, const std::string& bodyColor)
+        : brand(brandName), color(bodyColor), mileage(12) {
+        std::cout << "Constructor with parameter\n";
     }
-    Car(Car &obj){ //copy constructor
-        cout <<"Copy Constructor called\n";
-        name = obj.name;
-        color = obj.color;
-        //mileage = obj.mileage; // shallow copy
-        mileage = new int; //deep copy
-        *mileage = *(obj.mileage);
+
+    Car(const Car& other)
+        : brand(other.brand), color(other.color), mileage(other.mileage) {
+        std::cout << "Copy Constructor called\n";
     }
-    void start(){
-        cout << "Car has started.";
+
+    void startEngine() const {
+        std::cout << "Car has started.";
     }
-    void stop(){
-        cout << "Car has stopped.";
+
+    void stopEngine() const {
+        std::cout << "Car has stopped.";
     }
 };
 
 int main() {
-    Car c1("Bmw","white");
-    Car c2(c1); //defult copy
-    cout << c2.name<<"\n";
-    cout << c2.color<<"\n";
+    Car c1("Bmw", "white");
+    Car c2(c1);
+    std::cout << c2.brand << '\n';
+    std::cout << c2.color << '\n';
     return 0;
 }
