@@ -1,57 +1,65 @@
-/*Question:
+#include <string>
+#include <array>
+#include <algorithm>
 
-The beauty of a string is the difference in frequencies between the most frequent and least frequent characters.
+static constexpr int ALPHABET_SIZE = 26;
 
-Given a string `s`, you need to calculate the sum of beauty for all of its substrings. The beauty of a substring is defined as the difference between the highest and lowest frequency of any character in the substring.
+int beautySum(std::string s) {
+    if (s.empty()) return 0;
 
-Write a function `beautySum` that takes a string `s` as input and returns the sum of beauty for all substrings.
-
-Example:
-
-Input: s = "aabcb"
-Output: 5
-Explanation: The substrings with non-zero beauty are ["aab","aabc","aabcb","abcb","bcb"], each with beauty equal to 1.
-
-Input: s = "aabcbaa"
-Output: 17
-
-Approach:
-
-1. Initialize a variable `ans` to store the total beauty sum.
-2. Iterate over the string `s` with the first loop, starting from index `i`.
-   - Initialize a frequency array `freq` of size 26, initialized with zeros.
-   - Iterate over the string `s` with the second loop, starting from index `j` equal to `i`.
-      - Increment the frequency of the character `s[j]` in the `freq` array.
-      - Calculate the difference between the highest and lowest frequencies in the `freq` array and add it to `ans`.
-3. Return the value of `ans` as the final result.
-
-CODE:-
-*/
-int get_maxmin(vector<int>& freq){
-    int maxi = INT_MIN, mini = INT_MAX;
-    for(auto it:freq){
-        maxi = max(maxi,it);
-        if(it!=0)
-            mini = min(mini,it);
+    for (char ch : s) {
+        if (ch < 'a' || ch > 'z') return 0;
     }
-    return (mini==INT_MAX)?0:maxi-mini;
-}    
 
-int beautySum(string s) {
-    int ans = 0;
-    // 2 loops to generate all substrings
-    for(int i=0; i<s.size(); i++){
-        vector<int>freq(26,0);
-        for(int j=i; j<s.size(); j++){
-            freq[s[j]-'a']++;
-            int maxmin = get_maxmin(freq);
-            ans += maxmin;
+    const int n = static_cast<int>(s.size());
+    long long totalBeauty = 0;
+
+    for (int i = 0; i < n; ++i) {
+        std::array<int, ALPHABET_SIZE> freq{};
+        int maxFreq = 0;
+        int minFreq = n + 1;
+        int charsAtMin = 0;
+
+        for (int j = i; j < n; ++j) {
+            const int idx = s[j] - 'a';
+            const int oldFreq = freq[idx];
+            const int newFreq = oldFreq + 1;
+            freq[idx] = newFreq;
+
+            maxFreq = std::max(maxFreq, newFreq);
+
+            if (oldFreq == 0) {
+                if (minFreq == 1) {
+                    ++charsAtMin;
+                } else {
+                    minFreq = 1;
+                    charsAtMin = 1;
+                }
+            } else {
+                if (oldFreq == minFreq) {
+                    --charsAtMin;
+                }
+                if (charsAtMin == 0) {
+                    int bestMin = n + 1;
+                    int countBest = 0;
+                    for (int k = 0; k < ALPHABET_SIZE; ++k) {
+                        const int c = freq[k];
+                        if (c == 0) continue;
+                        if (c < bestMin) {
+                            bestMin = c;
+                            countBest = 1;
+                        } else if (c == bestMin) {
+                            ++countBest;
+                        }
+                    }
+                    minFreq = bestMin;
+                    charsAtMin = countBest;
+                }
+            }
+
+            totalBeauty += maxFreq - minFreq;
         }
     }
-    return ans;
-}
 
-/*
-Time complexity :- for generating all substrings is O(n^2), where n is the length of the string `s`. For each substring, we calculate the difference between the highest and lowest frequencies, which takes O(26) or O(1) time since there are 26 lowercase alphabets. Therefore, the overall time complexity is O(n^2).
-Space complexity :- O(26) or O(1) since we use a constant-sized frequency array to store the counts of characters.
-*/
+    return static_cast<int>(totalBeauty);
+}
