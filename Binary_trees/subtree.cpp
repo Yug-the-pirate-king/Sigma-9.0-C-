@@ -1,5 +1,6 @@
 #include <iostream>
-#include<vector>
+#include <vector>
+#include <stdexcept>
 using namespace std;
 
 class Node
@@ -16,57 +17,83 @@ public:
     }
 };
 
-static int idx = -1;
-
-Node *buildTree(vector<int> nodes)
+Node *buildTreeHelper(const vector<int> &nodes, size_t &idx)
 {
-    idx++;
-    if (nodes[idx] == -1)
+    if (idx >= nodes.size())
+    {
+        throw runtime_error("Invalid tree serialization: not enough nodes");
+    }
+    int val = nodes[idx++];
+    if (val == -1)
         return nullptr;
-    Node *currnode = new Node(nodes[idx]);
-    currnode->left = buildTree(nodes);
-    currnode->right = buildTree(nodes);
+    Node *currnode = new Node(val);
+    currnode->left = buildTreeHelper(nodes, idx);
+    currnode->right = buildTreeHelper(nodes, idx);
     return currnode;
 }
-bool isIdentical(Node* root, Node* subroot){
-    if(root == nullptr && subroot == nullptr){
-        return true;
-    }
-    if(root == nullptr || subroot == nullptr){
-        return false;
-    }
-    if(root->data != subroot->data){
-        return false;
-    }
-    return isIdentical(root->left,subroot->left) && isIdentical(root->right,subroot->right);
+
+Node *buildTree(const vector<int> &nodes)
+{
+    size_t idx = 0;
+    return buildTreeHelper(nodes, idx);
 }
 
-bool isSubtree(Node* root,Node*subroot){
-    if(root->data == subroot->data){
-        if(isIdentical(root,subroot)){
-            return true;
-        }else{
-            return false;
-        }
-    }
-    bool leftsubtree = isSubtree(root->left,subroot);
-    if(! leftsubtree){
-        return isSubtree(root->right,subroot);
-    }
-    return leftsubtree;
+bool isIdentical(Node *root, Node *subroot)
+{
+    if (root == nullptr && subroot == nullptr)
+        return true;
+    if (root == nullptr || subroot == nullptr)
+        return false;
+    if (root->data != subroot->data)
+        return false;
+    return isIdentical(root->left, subroot->left) && isIdentical(root->right, subroot->right);
+}
 
+bool isSubtree(Node *root, Node *subroot)
+{
+    if (subroot == nullptr)
+        return true;
+    if (root == nullptr)
+        return false;
+    if (root->data == subroot->data && isIdentical(root, subroot))
+        return true;
+    return isSubtree(root->left, subroot) || isSubtree(root->right, subroot);
+}
+
+void deleteTree(Node *root)
+{
+    if (root == nullptr)
+        return;
+    deleteTree(root->left);
+    deleteTree(root->right);
+    delete root;
 }
 
 int main()
 {
     vector<int> nodes = {1, 2, 4, -1, -1, 5, -1, -1, 3, -1, 6, -1, -1};
-    Node *root = buildTree(nodes);
+    Node *root = nullptr;
+    Node *subroot = nullptr;
 
-    Node* subroot = new Node(2);
-    subroot->left = new Node(4);
-    subroot->right = new Node(5);
+    try
+    {
+        root = buildTree(nodes);
 
-    cout << isSubtree(root, subroot) << endl;
+        subroot = new Node(2);
+        subroot->left = new Node(4);
+        subroot->right = new Node(5);
 
+        cout << isSubtree(root, subroot) << endl;
+    }
+    catch (const exception &e)
+    {
+        cerr << "Error: " << e.what() << endl;
+        deleteTree(root);
+        deleteTree(subroot);
+        return 1;
+    }
+
+    deleteTree(root);
+    deleteTree(subroot);
     return 0;
 }
