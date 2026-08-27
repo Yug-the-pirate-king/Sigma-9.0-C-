@@ -1,51 +1,57 @@
 #include <iostream>
-using namespace std;
+#include <vector>
+#include <algorithm>
 
 int main() {
-    int n = 5,m=4;
-    
-    int arr[n][m] = {
-    {  1,  2,  3,  4,  5 },
-    {  6,  7,  8,  9, 10 },
-    { 11, 12, 13, 14, 15 },
-    { 16, 17, 18, 19, 20 },
-};
+    const std::vector<std::vector<int>> matrix = {
+        { 1,  2,  3,  4,  5 },
+        { 6,  7,  8,  9, 10 },
+        { 11, 12, 13, 14, 15 },
+        { 16, 17, 18, 19, 20 },
+    };
 
-    for(int i = 0;i<(min(n,m)+1)/2;i++){
-    int TopRow = i;
-    int LeftColum = i;
-    int BottumRow = n-i-1;
-    int RightColum = m-i-1;
+    if (matrix.empty() || matrix[0].empty()) {
+        return 0;
+    }
 
-    //top
-    while(RightColum >= LeftColum){
-        cout << arr[TopRow][LeftColum] << " ";
-        LeftColum++;
-    }
-    LeftColum = i;
-    TopRow++;
+    const int n = static_cast<int>(matrix.size());
+    const int m = static_cast<int>(matrix[0].size());
 
-    //right
-    while(BottumRow >= TopRow){
-        cout << arr[TopRow][RightColum] << " ";
-        TopRow++;
+    for (const auto& row : matrix) {
+        if (static_cast<int>(row.size()) != m) {
+            std::cerr << "Error: matrix rows have inconsistent sizes\n";
+            return 1;
+        }
     }
-    TopRow = i;
-    RightColum--;
 
-    //buttom
-    while(RightColum >= i){
-        cout << arr[BottumRow][RightColum] << " ";
-        RightColum--;
+    const int layers = (std::min(n, m) + 1) / 2;
+
+    for (int layer = 0; layer < layers; ++layer) {
+        const int top = layer;
+        const int left = layer;
+        const int bottom = n - layer - 1;
+        const int right = m - layer - 1;
+
+        for (int col = left; col <= right; ++col) {
+            std::cout << matrix[top][col] << " ";
+        }
+
+        for (int row = top + 1; row <= bottom; ++row) {
+            std::cout << matrix[row][right] << " ";
+        }
+
+        if (bottom > top) {
+            for (int col = right - 1; col >= left; --col) {
+                std::cout << matrix[bottom][col] << " ";
+            }
+        }
+
+        if (left < right && bottom > top) {
+            for (int row = bottom - 1; row > top; --row) {
+                std::cout << matrix[row][left] << " ";
+            }
+        }
     }
-    RightColum = n+i-1;
-BottumRow--;
-    //left
-    while(BottumRow > TopRow){
-        cout << arr[BottumRow][LeftColum] << " ";
-        BottumRow--;
-    }
-}
+
     return 0;
-
 }
