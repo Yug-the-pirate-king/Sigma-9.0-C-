@@ -1,26 +1,29 @@
 #include <iostream>
-using namespace std;
+#include <vector>
 
 int main() {
-    int n;
-    int m;
-    cout << "Enter two size of array: ";
-    cin >> n >> m;
-    int arr[n][m];
+    int numRows = 0;
+    int numCols = 0;
 
-    cout << "Enter array elements: ";
-    for (int i = 0; i < n; i++) { // row
-        for (int j = 0; j < m; j++) { // column
-            cin >> arr[i][j];
+    std::cout << "Enter two size of array: ";
+    std::cin >> numRows >> numCols;
+
+    std::vector<std::vector<int>> matrix(numRows, std::vector<int>(numCols));
+
+    std::cout << "Enter array elements: ";
+    for (int row = 0; row < numRows; ++row) {
+        for (int col = 0; col < numCols; ++col) {
+            std::cin >> matrix[row][col];
         }
     }
-    cout << "Array elements are: " << endl;
-    for (int i = 0; i < n; i++) { // row        
-        for (int j = 0; j < m; j++) { // column
-            cout << arr[i][j] << " ";
+
+    std::cout << "Array elements are: " << '\n';
+    for (int row = 0; row < numRows; ++row) {
+        for (int col = 0; col < numCols; ++col) {
+            std::cout << matrix[row][col] << ' ';
         }
-        cout << endl;
-    }   
+        std::cout << '\n';
+    }
 
     return 0;
 }
