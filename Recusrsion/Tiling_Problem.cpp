@@ -1,23 +1,22 @@
 #include "../myheaders.h"
 using namespace std;
 
-int tp(int n){ // 2*n
+int countTilingWays(int boardWidth)
+{
+    if (boardWidth == 0 || boardWidth == 1)
+    {
+        return 1;
+    }
 
-if(n == 0 || n == 1){
-    return 1;
-}
-    // vertical
-    int ans1 = tp(n - 1);
+    int verticalTilings = countTilingWays(boardWidth - 1);
+    int horizontalTilings = countTilingWays(boardWidth - 2);
 
-    // horizontal
-    int ans2 = tp(n - 2);
-
-    return ans1 + ans2;
+    return verticalTilings + horizontalTilings;
 }
 
 int main()
 {
-    int n = 5;
-    cout << tp(n);
+    int boardWidth = 5;
+    cout << countTilingWays(boardWidth);
     return 0;
 }
