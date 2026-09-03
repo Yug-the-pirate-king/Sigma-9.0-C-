@@ -1,35 +1,56 @@
 #include <iostream>
 #include <stack>
-using namespace std;
 
-void Push_Buttom(stack<char> &s, char value)
-{
-    if (s.empty())
-    {
+/**
+ * @brief Recursively inserts a value at the bottom of a stack.
+ * @param s The stack to modify.
+ * @param value The value to insert at the bottom.
+ */
+template <typename T>
+void insert_at_bottom(std::stack<T>& s, T value) {
+    if (s.empty()) {
         s.push(value);
         return;
     }
-    char top = s.top();
+
+    T top = s.top();
     s.pop();
-    Push_Buttom(s, value);
+    insert_at_bottom(s, value);
     s.push(top);
 }
 
-void reverse_stack(stack<char> &s)
-{
-    if (s.empty()) 
-    {
+/**
+ * @brief Recursively reverses a stack in-place.
+ * @param s The stack to reverse.
+ */
+template <typename T>
+void reverse_stack(std::stack<T>& s) {
+    if (s.empty()) {
         return;
     }
-    char temp = s.top();
+
+    T top = s.top();
     s.pop();
     reverse_stack(s);
-    Push_Buttom(s, temp);
+    insert_at_bottom(s, top);
 }
 
-int main()
-{
-    stack<char> s;
+/**
+ * @brief Prints a stack from top to bottom.
+ * @param s A copy of the stack to print.
+ *
+ * The stack is passed by value so the caller's stack remains unchanged.
+ */
+template <typename T>
+void print_stack(std::stack<T> s) {
+    while (!s.empty()) {
+        std::cout << s.top() << '\n';
+        s.pop();
+    }
+}
+
+int main() {
+    std::stack<char> s;
     s.push('E');
     s.push('D');
     s.push('C');
@@ -37,12 +58,7 @@ int main()
     s.push('A');
 
     reverse_stack(s);
-
-    while (!s.empty())
-    {
-        cout << s.top() << "\n";
-        s.pop();
-    }
+    print_stack(s);
 
     return 0;
 }
