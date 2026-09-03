@@ -1,50 +1,118 @@
 #include <iostream>
-#include<string>
-using namespace std;
+#include <string>
+#include <stdexcept>
 
-class Animal{
-    public:
-    string color;
-    void eat(){
-        cout << "eats\n";
+class Animal {
+public:
+    Animal() = default;
+    virtual ~Animal() = default;
+
+    explicit Animal(const std::string& color) : color_{color} {
+        validateColor(color_);
     }
-    void breathe(){
-        cout <<"breathes\n";
+
+    void setColor(const std::string& color) {
+        validateColor(color);
+        color_ = color;
+    }
+
+    [[nodiscard]] const std::string& color() const noexcept {
+        return color_;
+    }
+
+    void eat() const {
+        std::cout << "eats\n";
+    }
+
+    void breathe() const {
+        std::cout << "breathes\n";
+    }
+
+private:
+    std::string color_;
+
+    static void validateColor(const std::string& color) {
+        if (color.empty()) {
+            throw std::invalid_argument("Animal color cannot be empty");
+        }
     }
 };
 
 class Mammal : public Animal {
-    public:
-    string bloodType;
+public:
+    Mammal() = default;
+    virtual ~Mammal() = default;
 
-    Mammal(){
-        bloodType = "Warm";
+    explicit Mammal(const std::string& bloodType) : bloodType_{bloodType} {
+        validateBloodType(bloodType_);
+    }
+
+    void setBloodType(const std::string& bloodType) {
+        validateBloodType(bloodType);
+        bloodType_ = bloodType;
+    }
+
+    [[nodiscard]] const std::string& bloodType() const noexcept {
+        return bloodType_;
+    }
+
+private:
+    std::string bloodType_{"Warm"};
+
+    static void validateBloodType(const std::string& bloodType) {
+        if (bloodType.empty()) {
+            throw std::invalid_argument("Mammal blood type cannot be empty");
+        }
     }
 };
 
-class fish : public Animal {
-    public:
-    string bloodType;
+class Fish : public Animal {
+public:
+    Fish() = default;
+    virtual ~Fish() = default;
 
-    fish(){
-        bloodType = "cold";
+    explicit Fish(const std::string& bloodType) : bloodType_{bloodType} {
+        validateBloodType(bloodType_);
+    }
+
+    void setBloodType(const std::string& bloodType) {
+        validateBloodType(bloodType);
+        bloodType_ = bloodType;
+    }
+
+    [[nodiscard]] const std::string& bloodType() const noexcept {
+        return bloodType_;
+    }
+
+private:
+    std::string bloodType_{"cold"};
+
+    static void validateBloodType(const std::string& bloodType) {
+        if (bloodType.empty()) {
+            throw std::invalid_argument("Fish blood type cannot be empty");
+        }
     }
 };
 
-class Dog : public Mammal{
-    public:
-    void tailwag(){
-        cout <<"A dog wag its tail.\n";
+class Dog : public Mammal {
+public:
+    void tailwag() const {
+        std::cout << "A dog wag its tail.\n";
     }
 };
-
 
 int main() {
-Dog d1;
+    try {
+        Dog d1;
+        d1.setColor("Brown");
+        d1.eat();
+        d1.breathe();
+        d1.tailwag();
+        std::cout << d1.bloodType();
+    } catch (const std::exception& e) {
+        std::cerr << "Error: " << e.what() << '\n';
+        return 1;
+    }
 
-d1.eat();
-d1.breathe();
-d1.tailwag();
-cout << d1.bloodType;
     return 0;
 }
